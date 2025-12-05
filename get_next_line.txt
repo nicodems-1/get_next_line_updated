@@ -1,0 +1,17 @@
+Deroulé etape par etape dans le cas ou le buffer ne prend pas de \n (petit buffer)
+--> on prend un buffer[sizebuffer], on prend un static "stash"
+--> read(fd, buffer, O_READONLY)
+--> ft_strjoin -> buffer + stash = -> stash (premiere iteration ne renvoie que buffer dans stash--> proteger strjoin pr eviter segfault) 
+--> fonction qui cherche le \n dans le stash, (ne le trouve pas) donc on revient dans read(fd, buffer, O_READONLY); __(trouver un moyen de free stash dans strjoin avant de re-allouer memory)
+--> Si on trouve \n --> fonction trim_the_end (alloue chaine finale), fonction old_stash-->new_stash : met la fin de buffer apres le \n dans stash
+
+Deroulé etape par etape dans le cas ou le buffer prend direct un \n (grand buffer)
+--> on prend un buffer[sizebuffer], on prend un static "stash"
+--> read(fd, buffer, O_READONLY)
+--> ft_strjoin -> buffer + stash = -> stash (premiere iteration ne renvoie que buffer dans stash--> proteger strjoin pr eviter segfault) 
+--> fonction qui cherche le \n dans le stash, (le trouve) 
+--> Si on trouve \n --> fonction trim_the_end (alloue chaine finale), fonction old_stash-->new_stash : met la fin de buffer apres le \n dans stash
+
+Fonctions a coder : ft_strjoin, ft_strlen, eol_searcher, trim_the_end, old_stash_new_stash
+
+Difficulté du projet (malloc, free);
